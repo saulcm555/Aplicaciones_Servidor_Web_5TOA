@@ -1,4 +1,4 @@
-import type { SubCategory } from "./subcategory.js";
+import type { SubCategory } from "./sub_category.js";
 import type { Product } from "./product.js";
 
 export interface Category {

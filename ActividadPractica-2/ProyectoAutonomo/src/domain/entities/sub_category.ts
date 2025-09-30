@@ -5,5 +5,5 @@ export interface SubCategory {
 	id_category: number;
 	sub_category_name: string;
 	description: string;
-	category?: Category;
+	category: Category;
 }

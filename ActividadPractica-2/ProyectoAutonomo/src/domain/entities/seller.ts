@@ -1,4 +1,3 @@
-import type { Assesment } from "./assesment.js";
 import type { Inventory } from "./inventory.js";
 import type { Product } from "./product.js";
 
@@ -13,5 +12,4 @@ export interface Seller {
 	created_at: Date;
 	inventories?: Inventory[];
 	products?: Product[];
-	assesments?: Assesment[];
 }

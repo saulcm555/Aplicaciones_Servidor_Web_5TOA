@@ -2,7 +2,6 @@ import type { Product } from "./product.js";
 
 export {}
 
-
 export interface Delivery {
 	id_delivery: number;
 	id_product: number;
