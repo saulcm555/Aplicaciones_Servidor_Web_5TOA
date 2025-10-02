@@ -5,6 +5,6 @@ export interface Inventory {
 	id_inventory: number;
 	id_seller: number;
 	updated_at: Date;
-	seller?: Seller;
+	seller: Seller;
 	products?: Product[];
 }

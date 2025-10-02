@@ -12,5 +12,5 @@ export interface Order {
 	id_cart: number;
 	id_payment_method: number;
 	client?: Client;
-	paymentMethod?: PaymentMethod;
+	paymentMethod: PaymentMethod;
 }

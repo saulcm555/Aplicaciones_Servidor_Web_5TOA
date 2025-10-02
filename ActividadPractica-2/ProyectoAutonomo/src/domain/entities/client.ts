@@ -1,4 +1,4 @@
-import type { Order } from "./order.js";
+import { Cart } from "./cart.js";
 
 export interface Client {
 	id_client: number;
@@ -7,5 +7,5 @@ export interface Client {
 	client_password: string;
 	address: string;
 	created_at: Date;
-	orders?: Order[];
+	cart?: Cart[];
 }

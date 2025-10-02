@@ -1,6 +1,6 @@
 import type { Inventory } from "./inventory.js";
-import type { Seller } from "./seller.js";
-import type { Category } from "./category.js";
+import { Order } from "./order.js";
+import type { Cart } from "./cart.js";
 import type { SubCategory } from "./sub_category.js";
 
 export interface Product {
@@ -15,8 +15,8 @@ export interface Product {
 	stock: number;
 	image_url: string;
 	created_at: Date;
-	inventory?: Inventory;
-	seller?: Seller;
-	category?: Category;
+	inventory: Inventory;
 	subcategory?: SubCategory;
+	order?: Order[];
+	cart?: Cart[];
 }

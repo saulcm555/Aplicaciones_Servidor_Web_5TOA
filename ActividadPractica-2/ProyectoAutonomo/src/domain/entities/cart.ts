@@ -1,6 +1,6 @@
 import type { Product } from "./product.js";
-import type { Inventory } from "./inventory.js";
 import type { Client } from "./client.js";
+import { Order } from "./order.js";
 
 export interface Cart {
 	id_cart: number;
@@ -9,7 +9,7 @@ export interface Cart {
 	id_product: number;
 	quantity: number;
 	product?: Product;
-    inventory?: Inventory;
+    order?: Order;
     client: Client;
 
 }

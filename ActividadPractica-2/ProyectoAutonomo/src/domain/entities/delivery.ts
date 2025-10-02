@@ -1,4 +1,4 @@
-import type { Product } from "./product.js";
+import { Order } from "./order.js";
 
 export {}
 
@@ -12,5 +12,5 @@ export interface Delivery {
 	delivery_person: string;
 	delivery_cost: number;
 	phone: number;
-	product?: Product;
+	order: Order;
 }

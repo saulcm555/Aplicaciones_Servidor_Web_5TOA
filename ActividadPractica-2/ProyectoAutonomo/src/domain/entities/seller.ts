@@ -1,5 +1,4 @@
 import type { Inventory } from "./inventory.js";
-import type { Product } from "./product.js";
 
 export interface Seller {
 	id_seller: number;
@@ -11,5 +10,4 @@ export interface Seller {
 	location: string;
 	created_at: Date;
 	inventories?: Inventory[];
-	products?: Product[];
 }
