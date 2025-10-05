@@ -10,9 +10,8 @@
 Este proyecto fue desarrollado como parte de un trabajo colaborativo en el curso de **Aplicaciones para Servidores Web**. 
 
 ### Contribuciones del Equipo
-- **@saulcm555**: Arquitectura base y estructura inicial del proyecto
-- **Equipo de desarrollo**: Implementación colaborativa de entidades y repositorios
-- **Commits del equipo**: Desarrollo incremental del sistema completo
+- **Saul Castro**: Arquitectura base y estructura inicial del proyecto
+- **Lilibeth Pinargote - Jair Jama**: Implementación colaborativa de entidades y repositorios
 
 ### Mi Contribución Específica
 - ✅ Documentación completa del sistema
