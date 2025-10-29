@@ -1,0 +1,693 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Admin {
+  """Admin email address"""
+  admin_email: String!
+
+  """Admin name"""
+  admin_name: String!
+
+  """Admin password (hashed)"""
+  admin_password: String!
+
+  """Creation date"""
+  created_at: DateTime!
+
+  """Admin ID"""
+  id_admin: Int!
+
+  """Admin role"""
+  role: String
+
+  """Updated date"""
+  updated_at: DateTime!
+}
+
+type Cart {
+  """Cliente asociado al carrito"""
+  client: Client
+
+  """Cart status"""
+  created_at: DateTime!
+
+  """Cart ID"""
+  id_cart: Int!
+
+  """Cart ID"""
+  id_client: Int!
+
+  """Órdenes asociadas al carrito"""
+  orders: [Order!]
+
+  """Productos dentro del carrito"""
+  productCarts: [ProductCart!]
+
+  """Cart status"""
+  status: String!
+
+  """Last update date"""
+  updated_at: DateTime!
+}
+
+type Category {
+  """Category description"""
+  category_description: String
+
+  """Category name"""
+  category_name: String!
+  category_photo: String
+
+  """Category ID"""
+  id_category: Int!
+
+  """Órdenes asociadas al carrito"""
+  orders: [SubCategory!]
+}
+
+type Client {
+  address: String
+
+  """Carritos asociados al cliente"""
+  carts: [Cart!]
+  client_email: String!
+  client_name: String!
+  created_at: String!
+  id_client: Int!
+  phone: String
+}
+
+type ClienteConComprasType {
+  """Email del cliente"""
+  email: String!
+
+  """Estado del cliente (activo/inactivo)"""
+  estado: String!
+
+  """Promedio de gasto por orden"""
+  gastoPorOrden: Float!
+
+  """ID del cliente"""
+  idCliente: Int!
+
+  """Nombre del cliente"""
+  nombre: String!
+
+  """Total gastado"""
+  totalGastado: Float!
+
+  """Total de órdenes realizadas"""
+  totalOrdenes: Int!
+
+  """Fecha de última compra"""
+  ultimaCompra: String!
+}
+
+type ComparacionMensualType {
+  """Año"""
+  anio: Int!
+
+  """Ingresos del mes"""
+  ingresos: Float!
+
+  """Mes"""
+  mes: Int!
+
+  """Órdenes del mes"""
+  ordenes: Int!
+
+  """Variación porcentual respecto al mes anterior"""
+  variacionPorcentual: Float
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Delivery {
+  """City"""
+  city: String!
+
+  """Creation date"""
+  created_at: DateTime!
+
+  """Delivery address"""
+  delivery_address: String!
+
+  """Delivery cost"""
+  delivery_cost: Float!
+
+  """Delivery person name"""
+  delivery_person: String
+
+  """Estimated delivery time"""
+  estimated_time: DateTime
+
+  """Delivery ID"""
+  id_delivery: Int!
+
+  """Product ID"""
+  id_product: Int
+
+  """Orders associated with this delivery"""
+  orders: [Order!]
+
+  """Delivery status"""
+  status: String!
+}
+
+type EstadisticasVentasType {
+  """Clientes únicos"""
+  clientesUnicos: Int!
+
+  """Ingresos totales"""
+  ingresosTotales: Float!
+
+  """Total de productos vendidos"""
+  productosVendidos: Int!
+
+  """Tasa de conversión en porcentaje"""
+  tasaConversion: Float
+
+  """Ticket promedio"""
+  ticketPromedio: Float!
+
+  """Total de órdenes en el período"""
+  totalOrdenes: Int!
+}
+
+input FiltroBusquedaProductosInput {
+  """Término de búsqueda en nombre o descripción"""
+  busqueda: String
+
+  """ID de categoría"""
+  categoriaId: Int
+
+  """Dirección de orden (ASC/DESC)"""
+  direccion: String = "DESC"
+
+  """Límite por página"""
+  limite: Int = 20
+
+  """Ordenar por campo"""
+  ordenarPor: String = "created_at"
+
+  """Página"""
+  pagina: Int = 1
+
+  """Precio máximo"""
+  precioMaximo: Int
+
+  """Precio mínimo"""
+  precioMinimo: Int
+
+  """Stock máximo"""
+  stockMaximo: Int
+
+  """Stock mínimo"""
+  stockMinimo: Int
+
+  """ID de vendedor"""
+  vendedorId: Int
+}
+
+input FiltroClientesInput {
+  """Compras mínimas realizadas"""
+  comprasMinimas: Int
+
+  """Días desde última compra"""
+  diasUltimaCompra: Int
+
+  """Estado del cliente (activo/inactivo)"""
+  estado: String
+
+  """Gasto mínimo total"""
+  gastoMinimo: Int
+
+  """Límite de resultados"""
+  limite: Int = 20
+}
+
+input FiltroVentasInput {
+  """Año"""
+  anio: Int
+
+  """Límite de resultados"""
+  limite: Int = 10
+
+  """Mes (1-12)"""
+  mes: Int
+}
+
+type InventarioBajoType {
+  """Nivel de criticidad"""
+  nivelCriticidad: String
+
+  """Nombre del producto"""
+  nombreProducto: String!
+
+  """Nombre del vendedor"""
+  nombreVendedor: String!
+
+  """Precio del producto"""
+  precio: Float!
+
+  """ID del producto"""
+  productoId: Int!
+
+  """Stock actual"""
+  stockActual: Int!
+
+  """Stock mínimo recomendado"""
+  stockMinimo: Int!
+}
+
+type Inventory {
+  """Creation date"""
+  created_at: DateTime!
+
+  """Inventory ID"""
+  id_inventory: Int!
+
+  """Seller ID"""
+  id_seller: Int!
+
+  """Warehouse location"""
+  location: String
+
+  """Seller associated with this inventory"""
+  seller: Seller
+
+  """Total stock quantity"""
+  stock_total: Int!
+}
+
+type Order {
+  """Cart associated with this order"""
+  cart: Cart
+
+  """Client associated with this order"""
+  client: Client
+
+  """Creation date"""
+  created_at: DateTime!
+
+  """Delivery information"""
+  delivery: Delivery
+
+  """Delivery date"""
+  delivery_date: String
+
+  """Cart ID"""
+  id_cart: Int
+
+  """Client ID"""
+  id_client: Int!
+
+  """Delivery ID"""
+  id_delivery: Int
+
+  """Order ID"""
+  id_order: Int!
+
+  """Payment Method ID"""
+  id_payment_method: Int!
+
+  """Order date"""
+  order_date: DateTime!
+
+  """Payment method used"""
+  paymentMethod: PaymentMethod
+
+  """Products in this order"""
+  productOrders: [ProductOrder!]
+
+  """Order status"""
+  status: String!
+
+  """Total amount"""
+  total_amount: Float!
+}
+
+type PaginatedProducts {
+  data: [Producto!]!
+  meta: PaginationMeta!
+}
+
+type PaginationMeta {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  limit: Int!
+  page: Int!
+  total: Int!
+  totalPages: Int!
+}
+
+type PaymentMethod {
+  """Payment details"""
+  details_payment: String
+
+  """Payment method ID"""
+  id_payment_method: Int!
+
+  """Payment method name"""
+  method_name: String!
+
+  """Orders using this payment method"""
+  orders: [Order!]
+}
+
+type ProductCart {
+  """Date when product was added to cart"""
+  added_at: DateTime!
+
+  """Cart associated with this product"""
+  cart: Cart
+
+  """Cart ID"""
+  id_cart: Int!
+
+  """Product ID"""
+  id_product: Int!
+
+  """Product Cart ID"""
+  id_product_cart: Int!
+
+  """Product in the cart"""
+  product: Producto
+
+  """Quantity"""
+  quantity: Int!
+}
+
+type ProductOrder {
+  """Product Order ID"""
+  id: Int!
+
+  """Order ID"""
+  orderId: Int!
+
+  """Product ID"""
+  productId: Int!
+
+  """Quantity"""
+  quantity: Int!
+
+  """Subtotal"""
+  subtotal: Float!
+
+  """Unit price"""
+  unitPrice: Float!
+}
+
+type Producto {
+  """Category of this product"""
+  category: Category
+
+  """Creation date"""
+  created_at: DateTime!
+
+  """Product description"""
+  description: String
+
+  """Category ID"""
+  id_category: Int
+
+  """Product ID"""
+  id_product: Int!
+
+  """Seller ID"""
+  id_seller: Int
+
+  """SubCategory ID"""
+  id_sub_category: Int
+
+  """Product photo URL"""
+  photo: String
+
+  """Product price"""
+  price: Float!
+
+  """Carts containing this product"""
+  productCarts: [ProductCart!]
+
+  """Orders containing this product"""
+  productOrders: [ProductOrder!]
+
+  """Product name"""
+  product_name: String!
+
+  """Seller of this product"""
+  seller: Seller
+
+  """Available stock"""
+  stock: Int!
+
+  """SubCategory of this product"""
+  subCategory: SubCategory
+
+  """Subcategory associations"""
+  subcategoryProducts: [SubcategoryProduct!]
+}
+
+type ProductosMasVendidosType {
+  """Categoría del producto"""
+  categoria: String!
+
+  """Ingresos totales generados"""
+  ingresosTotales: Float!
+
+  """Nombre del producto"""
+  nombre: String!
+
+  """Número de órdenes que incluyen este producto"""
+  numeroOrdenes: Int!
+
+  """Precio promedio de venta"""
+  precioPromedio: Float!
+
+  """ID del producto"""
+  productoId: Int!
+
+  """Total de unidades vendidas"""
+  unidadesVendidas: Int!
+}
+
+type Query {
+  """Get an admin by ID"""
+  admin(id: Int!): Admin!
+
+  """Get all admins"""
+  admins: [Admin!]!
+
+  """
+  Búsqueda avanzada de productos con múltiples criterios: texto, categoría, vendedor, rangos de precio y stock, con ordenamiento y paginación
+  """
+  buscarProductosAvanzado(filtro: FiltroBusquedaProductosInput!): PaginatedProducts!
+  cart(id: Int!): Cart!
+  carts: [Cart!]!
+  categories: [Category!]!
+  category(id: Int!): Category!
+  client(id: Int!): Client!
+
+  """
+  Obtiene perfil completo de clientes incluyendo estadísticas de compras, gasto total y comportamiento de compra
+  """
+  clientesConHistorialCompras(comprasMinimas: Float = 1): [ClienteConComprasType!]!
+  clients: [Client!]!
+
+  """
+  Compara ventas mes a mes en un rango de fechas, calculando ingresos, órdenes y variación porcentual entre períodos
+  """
+  compararVentasPorPeriodos(rango: RangoPeriodoInput!): [ComparacionMensualType!]!
+  deliveries: [Delivery!]!
+  delivery(id: Int!): Delivery!
+
+  """
+  Calcula KPIs de ventas: total de órdenes, ingresos, ticket promedio, productos vendidos y clientes únicos
+  """
+  estadisticasVentas(filtro: FiltroVentasInput): EstadisticasVentasType!
+
+  """
+  Filtra clientes basándose en su comportamiento de compra: compras mínimas, gasto total, actividad reciente y estado
+  """
+  filtrarClientesPorComportamiento(filtro: FiltroClientesInput!): [ClienteConComprasType!]!
+  inventories: [Inventory!]!
+  inventory(id: Int!): Inventory!
+  order(id: Int!): Order!
+  orders: [Order!]!
+  paymentMethod(id: Int!): PaymentMethod!
+  paymentMethods: [PaymentMethod!]!
+  product(id: Int!): Producto
+  productCart(id: Int!): ProductCart!
+  productCarts: [ProductCart!]!
+  productCartsByCart(cartId: Int!): [ProductCart!]!
+  productOrder(id: Int!): ProductOrder!
+  productOrders: [ProductOrder!]!
+  productOrdersByOrder(orderId: Int!): [ProductOrder!]!
+  producto(id: Int!): Producto!
+  productos: [Producto!]!
+
+  """
+  Identifica productos con stock crítico incluyendo información del vendedor y nivel de urgencia para reabastecimiento
+  """
+  productosInventarioBajo(umbral: Float = 10): [InventarioBajoType!]!
+
+  """
+  Obtiene los productos más vendidos con métricas de rendimiento: unidades vendidas, ingresos totales, precio promedio y número de órdenes
+  """
+  productosMasVendidos(filtro: FiltroVentasInput): [ProductosMasVendidosType!]!
+  products: [Producto!]!
+  productsByCategory(categoryId: Int!): [Producto!]!
+  productsBySeller(sellerId: Int!): [Producto!]!
+
+  """
+  Analiza el rendimiento de cada categoría: productos totales, ventas, ingresos y tasa de rotación de inventario
+  """
+  rendimientoCategorias: [RendimientoCategoriasType!]!
+  seller(id: Int!): Seller!
+  sellers: [Seller!]!
+
+  """Get all subcategories"""
+  subCategories: [SubCategory!]!
+
+  """Get subcategories by category ID"""
+  subCategoriesByCategory(categoryId: Int!): [SubCategory!]!
+
+  """Get a subcategory by ID"""
+  subCategory(id: Int!): SubCategory!
+  subcategoryProduct(id: Int!): SubcategoryProduct!
+  subcategoryProducts: [SubcategoryProduct!]!
+  subcategoryProductsByProduct(productId: Int!): [SubcategoryProduct!]!
+  subcategoryProductsBySubcategory(subcategoryId: Int!): [SubcategoryProduct!]!
+
+  """
+  Obtiene información detallada de vendedores incluyendo estadísticas de sus productos, categorías y valor de inventario
+  """
+  vendedoresConProductos(limite: Float = 10): [VendedorConProductosType!]!
+}
+
+input RangoPeriodoInput {
+  """Año final"""
+  anioFinal: Int!
+
+  """Año inicial"""
+  anioInicial: Int!
+
+  """Mes final (1-12)"""
+  mesFinal: Int!
+
+  """Mes inicial (1-12)"""
+  mesInicial: Int!
+}
+
+type RendimientoCategoriasType {
+  """ID de la categoría"""
+  categoriaId: Int!
+
+  """Ingresos generados"""
+  ingresos: Float!
+
+  """Nombre de la categoría"""
+  nombreCategoria: String!
+
+  """Productos vendidos"""
+  productosVendidos: Int!
+
+  """Tasa de rotación de inventario"""
+  tasaRotacion: Float
+
+  """Total de productos en la categoría"""
+  totalProductos: Int!
+}
+
+type Seller {
+  """Creation date"""
+  created_at: DateTime!
+
+  """Seller description"""
+  description: String
+
+  """Seller email"""
+  email: String
+
+  """Seller ID"""
+  id_seller: Int!
+
+  """Inventories managed by this seller"""
+  inventories: [Inventory!]
+
+  """Seller phone"""
+  phone: String
+
+  """Products sold by this seller"""
+  products: [Producto!]
+
+  """Seller name"""
+  seller_name: String!
+}
+
+type SubCategory {
+  """Related category"""
+  category: Category
+
+  """SubCategory description"""
+  description: String
+
+  """Category ID"""
+  id_category: Int!
+
+  """SubCategory ID"""
+  id_sub_category: Int!
+
+  """SubCategory name"""
+  sub_category_name: String!
+
+  """Products in this subcategory"""
+  subcategoryproducts: [SubcategoryProduct!]
+}
+
+type SubcategoryProduct {
+  """Creation date"""
+  created_at: DateTime!
+
+  """Product ID"""
+  id_product: Int!
+
+  """Subcategory ID"""
+  id_subcategory: Int!
+
+  """Subcategory Product ID"""
+  id_subcategory_product: Int!
+
+  """Product associated"""
+  product: Producto
+
+  """Subcategory associated"""
+  subcategory: SubCategory
+}
+
+type VendedorConProductosType {
+  """Categorías en las que vende"""
+  categorias: [String!]!
+
+  """Email del vendedor"""
+  email: String!
+
+  """ID del vendedor"""
+  idVendedor: Int!
+
+  """Nombre del vendedor"""
+  nombreVendedor: String!
+
+  """Precio promedio de productos"""
+  precioPromedio: Float!
+
+  """Total de productos activos"""
+  totalProductos: Int!
+
+  """Inventario total en valor"""
+  valorInventario: Float!
+}

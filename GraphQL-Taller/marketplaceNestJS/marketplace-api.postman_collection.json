@@ -1,0 +1,621 @@
+{
+  "info": {
+    "name": "Marketplace API",
+    "description": "Colección completa de endpoints del Marketplace Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Clients",
+      "item": [
+        {
+          "name": "Create Client",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_name\": \"Juan Pérez\",\n  \"client_email\": \"juan@example.com\",\n  \"client_password\": \"password123\",\n  \"phone\": \"0999999999\",\n  \"address\": \"Av. Principal 123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/clients",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["clients"]
+            }
+          }
+        },
+        {
+          "name": "Get All Clients",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/clients",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["clients"]
+            }
+          }
+        },
+        {
+          "name": "Get Client by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/clients/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["clients", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Client",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"0988888888\",\n  \"address\": \"Nueva dirección\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/clients/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["clients", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Client",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/clients/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["clients", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Carts",
+      "item": [
+        {
+          "name": "Create Cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_client\": 1,\n  \"status\": \"active\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/carts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carts"]
+            }
+          }
+        },
+        {
+          "name": "Get All Carts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/carts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carts"]
+            }
+          }
+        },
+        {
+          "name": "Get Cart by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/carts/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carts", "1"]
+            }
+          }
+        },
+        {
+          "name": "Add Item to Cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_product\": 1,\n  \"quantity\": 2\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/carts/1/items",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carts", "1", "items"]
+            }
+          }
+        },
+        {
+          "name": "Get Cart Items",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/carts/1/items",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carts", "1", "items"]
+            }
+          }
+        },
+        {
+          "name": "Remove Item from Cart",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/carts/1/items/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carts", "1", "items", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Cart",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/carts/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carts", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Cart",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/carts/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carts", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_client\": 1,\n  \"id_cart\": 1,\n  \"id_payment_method\": 1,\n  \"total_amount\": 150.50,\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-10-20\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "Get All Orders",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "Get Order by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/orders/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["orders", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/orders/1/status",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["orders", "1", "status"]
+            }
+          }
+        },
+        {
+          "name": "Update Order",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"total_amount\": 175.00,\n  \"delivery_date\": \"2025-10-22\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/orders/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["orders", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Order",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/orders/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["orders", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Deliveries",
+      "item": [
+        {
+          "name": "Create Delivery",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_order\": 1,\n  \"delivery_address\": \"Calle Falsa 123\",\n  \"city\": \"Quito\",\n  \"status\": \"pending\",\n  \"estimated_time\": \"2025-10-18T10:00:00Z\",\n  \"delivery_person\": \"Carlos Ruiz\",\n  \"delivery_cost\": 5.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/deliveries",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["deliveries"]
+            }
+          }
+        },
+        {
+          "name": "Get All Deliveries",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/deliveries",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["deliveries"]
+            }
+          }
+        },
+        {
+          "name": "Get Delivery by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/deliveries/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["deliveries", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Delivery",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"in_transit\",\n  \"delivery_person\": \"María López\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/deliveries/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["deliveries", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Delivery",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/deliveries/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["deliveries", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Product Carts",
+      "item": [
+        {
+          "name": "Create Product Cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_product\": 1,\n  \"id_cart\": 1,\n  \"quantity\": 3\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/product-carts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["product-carts"]
+            }
+          }
+        },
+        {
+          "name": "Get All Product Carts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/product-carts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["product-carts"]
+            }
+          }
+        },
+        {
+          "name": "Get Product Cart by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/product-carts/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["product-carts", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Product Cart",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 5\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/product-carts/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["product-carts", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Product Cart",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/product-carts/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["product-carts", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Product Orders",
+      "item": [
+        {
+          "name": "Create Product Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_order\": 1,\n  \"id_product\": 1,\n  \"price_unit\": 25.50,\n  \"quantity\": 3,\n  \"subtotal\": 76.50\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/product-orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["product-orders"]
+            }
+          }
+        },
+        {
+          "name": "Get All Product Orders",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/product-orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["product-orders"]
+            }
+          }
+        },
+        {
+          "name": "Get Product Order by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/product-orders/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["product-orders", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Product Order",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 5,\n  \"subtotal\": 127.50\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/product-orders/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["product-orders", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Product Order",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/product-orders/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["product-orders", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,516 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Cart {
+  """Client ID"""
+  clientId: Int!
+
+  """Cart ID"""
+  id: Int!
+
+  """Cart status"""
+  status: String!
+}
+
+type Category {
+  """Category name"""
+  category_name: String!
+  created_at: String!
+
+  """Category description"""
+  description: String
+
+  """Category ID"""
+  id_category: Int!
+}
+
+type Client {
+  address: String
+  created_at: String!
+  email: String!
+  id_client: Int!
+  name: String!
+  phone: String
+}
+
+input CreateCartInput {
+  """Client ID"""
+  clientId: Int!
+
+  """Cart status"""
+  status: String!
+}
+
+input CreateCategoryInput {
+  """Category name"""
+  category_name: String!
+
+  """Category description"""
+  description: String
+}
+
+input CreateClientInput {
+  address: String
+  email: String!
+  name: String!
+  phone: String
+}
+
+input CreateDeliveryInput {
+  """Delivery address"""
+  address: String!
+
+  """Delivery date"""
+  deliveryDate: String
+
+  """Order ID"""
+  orderId: Int!
+
+  """Delivery status"""
+  status: String!
+}
+
+input CreateInventoryInput {
+  """Warehouse location"""
+  location: String
+
+  """Product ID"""
+  productId: Int!
+
+  """Stock quantity"""
+  quantity: Int!
+}
+
+input CreateOrderInput {
+  """Client ID"""
+  clientId: Int!
+
+  """Order status"""
+  status: String!
+
+  """Order total"""
+  total: Float!
+}
+
+input CreatePaymentMethodInput {
+  """Payment method description"""
+  description: String
+
+  """Is active"""
+  isActive: Boolean! = true
+
+  """Payment method name"""
+  name: String!
+}
+
+input CreateProductCartInput {
+  """Cart ID"""
+  cartId: Int!
+
+  """Product ID"""
+  productId: Int!
+
+  """Quantity"""
+  quantity: Int!
+}
+
+input CreateProductOrderInput {
+  """Order ID"""
+  orderId: Int!
+
+  """Product ID"""
+  productId: Int!
+
+  """Quantity"""
+  quantity: Int!
+
+  """Unit price"""
+  unitPrice: Float!
+}
+
+input CreateProductoInput {
+  description: String
+  id_category: Int
+  id_seller: Int
+  id_sub_category: Int
+  photo: String
+  price: Float!
+  product_name: String!
+  stock: Int! = 0
+}
+
+input CreateSellerInput {
+  """Business name"""
+  businessName: String
+
+  """Seller email"""
+  email: String!
+
+  """Seller name"""
+  name: String!
+
+  """Seller phone"""
+  phone: String
+}
+
+input CreateSubcategoryProductInput {
+  """Product ID"""
+  productId: Int!
+
+  """Subcategory ID"""
+  subcategoryId: Int!
+}
+
+type Delivery {
+  """Delivery address"""
+  address: String!
+
+  """Delivery date"""
+  deliveryDate: String
+
+  """Delivery ID"""
+  id: Int!
+
+  """Order ID"""
+  orderId: Int!
+
+  """Delivery status"""
+  status: String!
+}
+
+type Inventory {
+  """Inventory ID"""
+  id: Int!
+
+  """Warehouse location"""
+  location: String
+
+  """Product ID"""
+  productId: Int!
+
+  """Stock quantity"""
+  quantity: Int!
+}
+
+type Mutation {
+  createCart(createCartInput: CreateCartInput!): Cart!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  createClient(createClientInput: CreateClientInput!): Client!
+  createDelivery(createDeliveryInput: CreateDeliveryInput!): Delivery!
+  createInventory(createInventoryInput: CreateInventoryInput!): Inventory!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  createPaymentMethod(createPaymentMethodInput: CreatePaymentMethodInput!): PaymentMethod!
+  createProductCart(createProductCartInput: CreateProductCartInput!): ProductCart!
+  createProductOrder(createProductOrderInput: CreateProductOrderInput!): ProductOrder!
+  createProducto(createProductoInput: CreateProductoInput!): Producto!
+  createSeller(createSellerInput: CreateSellerInput!): Seller!
+  createSubcategoryProduct(createSubcategoryProductInput: CreateSubcategoryProductInput!): SubcategoryProduct!
+  removeCart(id: Int!): Cart!
+  removeCategory(id: Int!): Category!
+  removeClient(id: Int!): Client!
+  removeDelivery(id: Int!): Delivery!
+  removeInventory(id: Int!): Inventory!
+  removeOrder(id: Int!): Order!
+  removePaymentMethod(id: Int!): PaymentMethod!
+  removeProductCart(id: Int!): ProductCart!
+  removeProductOrder(id: Int!): ProductOrder!
+  removeProducto(id: Int!): Producto!
+  removeSeller(id: Int!): Seller!
+  removeSubcategoryProduct(id: Int!): SubcategoryProduct!
+  updateCart(updateCartInput: UpdateCartInput!): Cart!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  updateClient(updateClientInput: UpdateClientInput!): Client!
+  updateDelivery(updateDeliveryInput: UpdateDeliveryInput!): Delivery!
+  updateInventory(updateInventoryInput: UpdateInventoryInput!): Inventory!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  updatePaymentMethod(updatePaymentMethodInput: UpdatePaymentMethodInput!): PaymentMethod!
+  updateProductCart(updateProductCartInput: UpdateProductCartInput!): ProductCart!
+  updateProductOrder(updateProductOrderInput: UpdateProductOrderInput!): ProductOrder!
+  updateProducto(updateProductoInput: UpdateProductoInput!): Producto!
+  updateSeller(updateSellerInput: UpdateSellerInput!): Seller!
+  updateSubcategoryProduct(updateSubcategoryProductInput: UpdateSubcategoryProductInput!): SubcategoryProduct!
+}
+
+type Order {
+  """Client ID"""
+  clientId: Int!
+
+  """Order date"""
+  date: String!
+
+  """Order ID"""
+  id: Int!
+
+  """Order status"""
+  status: String!
+
+  """Order total"""
+  total: Float!
+}
+
+type PaymentMethod {
+  """Payment method description"""
+  description: String
+
+  """Payment method ID"""
+  id: Int!
+
+  """Is active"""
+  isActive: Boolean!
+
+  """Payment method name"""
+  name: String!
+}
+
+type ProductCart {
+  """Cart ID"""
+  cartId: Int!
+
+  """Product Cart ID"""
+  id: Int!
+
+  """Product ID"""
+  productId: Int!
+
+  """Quantity"""
+  quantity: Int!
+}
+
+type ProductOrder {
+  """Product Order ID"""
+  id: Int!
+
+  """Order ID"""
+  orderId: Int!
+
+  """Product ID"""
+  productId: Int!
+
+  """Quantity"""
+  quantity: Int!
+
+  """Subtotal"""
+  subtotal: Float!
+
+  """Unit price"""
+  unitPrice: Float!
+}
+
+type Producto {
+  created_at: String!
+  description: String
+  id_category: Int
+  id_product: Int!
+  id_seller: Int
+  id_sub_category: Int
+  photo: String
+  price: Float!
+  product_name: String!
+  stock: Int!
+}
+
+type Query {
+  cart(id: Int!): Cart!
+  carts: [Cart!]!
+  categories: [Category!]!
+  category(id: Int!): Category!
+  client(id: Int!): Client!
+  clients: [Client!]!
+  deliveries: [Delivery!]!
+  delivery(id: Int!): Delivery!
+  inventories: [Inventory!]!
+  inventory(id: Int!): Inventory!
+  order(id: Int!): Order!
+  orders: [Order!]!
+  paymentMethod(id: Int!): PaymentMethod!
+  paymentMethods: [PaymentMethod!]!
+  productCart(id: Int!): ProductCart!
+  productCarts: [ProductCart!]!
+  productCartsByCart(cartId: Int!): [ProductCart!]!
+  productOrder(id: Int!): ProductOrder!
+  productOrders: [ProductOrder!]!
+  productOrdersByOrder(orderId: Int!): [ProductOrder!]!
+  producto(id: Int!): Producto!
+  productos: [Producto!]!
+  seller(id: Int!): Seller!
+  sellers: [Seller!]!
+  subcategoryProduct(id: Int!): SubcategoryProduct!
+  subcategoryProducts: [SubcategoryProduct!]!
+  subcategoryProductsByProduct(productId: Int!): [SubcategoryProduct!]!
+  subcategoryProductsBySubcategory(subcategoryId: Int!): [SubcategoryProduct!]!
+}
+
+type Seller {
+  """Business name"""
+  businessName: String
+
+  """Seller email"""
+  email: String!
+
+  """Seller ID"""
+  id: Int!
+
+  """Seller name"""
+  name: String!
+
+  """Seller phone"""
+  phone: String
+}
+
+type SubcategoryProduct {
+  """Created at"""
+  createdAt: String
+
+  """Subcategory Product ID"""
+  id: Int!
+
+  """Product ID"""
+  productId: Int!
+
+  """Subcategory ID"""
+  subcategoryId: Int!
+}
+
+input UpdateCartInput {
+  """Client ID"""
+  clientId: Int
+  id: Int!
+
+  """Cart status"""
+  status: String
+}
+
+input UpdateCategoryInput {
+  """Category name"""
+  category_name: String
+
+  """Category description"""
+  description: String
+  id: Int!
+}
+
+input UpdateClientInput {
+  address: String
+  email: String
+  id: Int!
+  name: String
+  phone: String
+}
+
+input UpdateDeliveryInput {
+  """Delivery address"""
+  address: String
+
+  """Delivery date"""
+  deliveryDate: String
+  id: Int!
+
+  """Order ID"""
+  orderId: Int
+
+  """Delivery status"""
+  status: String
+}
+
+input UpdateInventoryInput {
+  id: Int!
+
+  """Warehouse location"""
+  location: String
+
+  """Product ID"""
+  productId: Int
+
+  """Stock quantity"""
+  quantity: Int
+}
+
+input UpdateOrderInput {
+  """Client ID"""
+  clientId: Int
+  id: Int!
+
+  """Order status"""
+  status: String
+
+  """Order total"""
+  total: Float
+}
+
+input UpdatePaymentMethodInput {
+  """Payment method description"""
+  description: String
+  id: Int!
+
+  """Is active"""
+  isActive: Boolean = true
+
+  """Payment method name"""
+  name: String
+}
+
+input UpdateProductCartInput {
+  """Cart ID"""
+  cartId: Int
+  id: Int!
+
+  """Product ID"""
+  productId: Int
+
+  """Quantity"""
+  quantity: Int
+}
+
+input UpdateProductOrderInput {
+  id: Int!
+
+  """Order ID"""
+  orderId: Int
+
+  """Product ID"""
+  productId: Int
+
+  """Quantity"""
+  quantity: Int
+
+  """Unit price"""
+  unitPrice: Float
+}
+
+input UpdateProductoInput {
+  description: String
+  id: Int!
+  id_category: Int
+  id_seller: Int
+  id_sub_category: Int
+  photo: String
+  price: Float
+  product_name: String
+  stock: Int = 0
+}
+
+input UpdateSellerInput {
+  """Business name"""
+  businessName: String
+
+  """Seller email"""
+  email: String
+  id: Int!
+
+  """Seller name"""
+  name: String
+
+  """Seller phone"""
+  phone: String
+}
+
+input UpdateSubcategoryProductInput {
+  id: Int!
+
+  """Product ID"""
+  productId: Int
+
+  """Subcategory ID"""
+  subcategoryId: Int
+}
