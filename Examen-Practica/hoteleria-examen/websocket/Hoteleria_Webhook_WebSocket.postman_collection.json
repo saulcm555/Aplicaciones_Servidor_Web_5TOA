@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "hoteleria-webhook-websocket",
+		"name": "Hotelería - Webhook & WebSocket",
+		"description": "Colección completa para probar el sistema REST → Webhook → WebSocket",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Verificación",
+			"item": [
+				{
+					"name": "Health Check - Webhook",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/webhook/health",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["webhook", "health"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estadísticas - Webhook",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/webhook/estadisticas",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["webhook", "estadisticas"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Webhook Manual",
+			"item": [
+				{
+					"name": "Enviar Notificación Manual",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipo_operacion\": \"create\",\n  \"entidad\": \"test\",\n  \"id\": 999,\n  \"datos\": {\n    \"mensaje\": \"Prueba manual desde POSTMAN\"\n  },\n  \"mensaje\": \"Notificación de prueba enviada exitosamente\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/webhook/notificacion",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["webhook", "notificacion"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Categorías (Automático)",
+			"item": [
+				{
+					"name": "Crear Categoría → Notificación Automática",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Aventura Extrema\",\n  \"descripcion\": \"Destinos para deportes extremos y aventura\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/categorias-destinos",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["categorias-destinos"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Categoría → Notificación Automática",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"descripcion\": \"Destinos para deportes extremos - Actualizado\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/categorias-destinos/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["categorias-destinos", "1"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Destinos (Automático)",
+			"item": [
+				{
+					"name": "Crear Destino → Notificación Automática",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Cusco\",\n  \"descripcion\": \"Ciudad imperial del Perú\",\n  \"imagen_url\": \"https://example.com/cusco.jpg\",\n  \"categoria_id\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/destinos",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["destinos"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Destino → Notificación Automática",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"descripcion\": \"Ciudad imperial del Perú - Patrimonio de la Humanidad\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/destinos/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["destinos", "1"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Hoteles (Automático)",
+			"item": [
+				{
+					"name": "Crear Hotel → Notificación Automática",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Hotel Monasterio\",\n  \"descripcion\": \"Hotel 5 estrellas en Cusco\",\n  \"direccion\": \"Calle Palacio 136, Cusco\",\n  \"imagen_url\": \"https://example.com/hotel-monasterio.jpg\",\n  \"destino_id\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/hoteles",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["hoteles"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Hotel → Notificación Automática",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"descripcion\": \"Hotel 5 estrellas en Cusco - Renovado 2025\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/hoteles/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["hoteles", "1"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6. Habitaciones (Automático)",
+			"item": [
+				{
+					"name": "Crear Habitación → Notificación Automática",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"hotel_id\": 1,\n  \"categoria\": \"Suite Deluxe\",\n  \"precio\": 350.00,\n  \"capacidad\": 2,\n  \"descripcion\": \"Suite con vista panorámica\",\n  \"imagen_url\": \"https://example.com/suite.jpg\",\n  \"wifi\": true,\n  \"tv\": true,\n  \"aire_acondicionado\": true,\n  \"minibar\": true,\n  \"desayuno_incluido\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/habitaciones",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["habitaciones"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7. Clientes (Automático)",
+			"item": [
+				{
+					"name": "Crear Cliente → Notificación Automática",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"María\",\n  \"apellido\": \"García\",\n  \"email\": \"maria.garcia@email.com\",\n  \"telefono\": \"+51 987654321\",\n  \"foto_url\": \"https://example.com/maria.jpg\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/clientes",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["clientes"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "8. Reservas (Automático)",
+			"item": [
+				{
+					"name": "Crear Reserva → Notificación Automática",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cliente_id\": 1,\n  \"habitacion_id\": 1,\n  \"fecha_inicio\": \"2025-12-15\",\n  \"fecha_fin\": \"2025-12-20\",\n  \"total\": 1750.00,\n  \"estado\": \"pendiente\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/reservas",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["reservas"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirmar Reserva → Notificación Automática",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/reservas/1/confirmar",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["reservas", "1", "confirmar"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar Reserva → Notificación Automática",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/reservas/1/cancelar",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["reservas", "1", "cancelar"]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
