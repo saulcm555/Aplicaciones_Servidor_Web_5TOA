@@ -1,0 +1,134 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: microservices_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - microservices-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: microservices_redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - microservices-network
+
+  products-service:
+    build:
+      context: ./products-service
+      dockerfile: Dockerfile
+    container_name: products-service
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - RABBITMQ_QUEUE=products_queue
+      - RABBITMQ_EXCHANGE=microservices.events
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  orders-service:
+    build:
+      context: ./orders-service
+      dockerfile: Dockerfile
+    container_name: orders-service
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - RABBITMQ_QUEUE=orders_queue
+      - RABBITMQ_EXCHANGE=microservices.events
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+      - ORDERS_QUEUE=orders_queue
+    depends_on:
+      - orders-service
+      - products-service
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  webhook-publisher:
+    build:
+      context: ./webhook-publisher-service
+      dockerfile: Dockerfile
+    container_name: webhook-publisher-service
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+      - RABBITMQ_QUEUE=webhook_publisher_queue
+      - RABBITMQ_EXCHANGE=microservices.events
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - WEBHOOK_SECRET=dev_secret_key_123456
+      # Supabase config para leer suscriptores dinámicos
+      - SUPABASE_URL=https://zjynrmbugltvupttaxqz.supabase.co
+      - SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqeW5ybWJ1Z2x0dnVwdHRheHF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3NjQyMDMsImV4cCI6MjA4MTM0MDIwM30.7eIlF_aVHtEn3aflwVzwA5CVPoA8_H6ILGcNQ5jiDt8
+      # Cache TTL en milisegundos (default 45 segundos)
+      - SUBSCRIBERS_CACHE_TTL_MS=45000
+      # Fallback URLs si Supabase falla
+      - WEBHOOK_LOGGER_URL=https://zjynrmbugltvupttaxqz.supabase.co/functions/v1/webhook-logger
+      - TELEGRAM_NOTIFIER_URL=https://zjynrmbugltvupttaxqz.supabase.co/functions/v1/telegram-notifier
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+networks:
+  microservices-network:
+    driver: bridge
+
+volumes:
+  redis-data:
